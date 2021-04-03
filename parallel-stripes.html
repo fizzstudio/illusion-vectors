@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Parallel Stripes – Illusion Vectors</title>
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <h1>Parallel Stripes</h1>
+  <p>The blue stripes are parallel to each other, but appear to zig-zag.</p>
+
+  <svg id="chart-bar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" overflow="hidden">
+    <title>blue-lines-parallel</title>
+    <style>
+      .horizontal {
+        fill: #7A9FE8;
+      }
+  
+      .vertical {
+        fill: #CFE1FF;
+      }
+  
+      .vertical.dark {
+        fill: #000;
+      }
+  
+      .star {
+        fill: #0E3674;
+      }
+  
+      .star-core {
+        stroke: #E9F3FC;
+        stroke-width: 2.5px;
+        fill: none;
+      }
+  
+      #capsule {
+        stroke-width: 2px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+  
+        .capsule {
+          fill: #0E3674;
+          stroke: #0E3674;
+        }
+      
+        .capsule-vertical {
+          fill: #6586B0;
+          stroke: #6586B0;
+  
+          fill: #0E3674;
+          stroke: #0E3674;
+          opacity: 0.5;
+        }
+        
+      .capsule-stem {
+        fill: none;
+        stroke-width: 2px;
+        stroke-linecap: round;
+      }
+  
+      .capsule-core {
+        fill: #E9F3FC;
+        stroke: none;
+      }
+
+      #controls {
+        margin-top: 1rem;
+        padding: 0.5rem;
+        background-color: aliceblue;
+      }
+
+      label {
+        display: block;
+        padding-bottom: 0.25rem;
+      }
+      
+    </style>
+  
+    <defs>
+      <g id="checkboard">
+        <rect x="-8" y="-8" width="16" height="16" fill="#E9F3FC"/>
+        <rect x="-8" y="-8" width="8" height="8" fill="black"/>
+        <rect x="0" y="0" width="8" height="8" fill="black"/>
+      </g>
+      
+      <use id="cb-0" href="#checkboard" transform="rotate(-45)" />
+      <use id="cb-1" href="#checkboard" transform="rotate(45)" />
+  
+      <g id="star">
+        <path class="star" d="M1,0 Q3,22 25,24 L25,26 Q3,28 1,50 L-1,50 Q-3,28 -25,26 L-25,24 Q-3,22 -1,0 Z"/>
+        <path class="star-core" d="M0,18 L7,25 L0,32 L-7,25 Z"/>
+      </g>
+  
+      <use id="star-r" href="#star" transform="rotate(6)" />
+      <use id="star-l" href="#star" transform="rotate(-6)" />
+  
+      <g id="capsule" transform="translate(0,25)">
+        <path d="M10,2 L20,-5 H30 L40,-2 L30,5 H20 Z"/>
+        <path class="capsule-stem" d="M-2.5,2.5 L10,2 M40,-2 L50,-2.8"/>
+        <path class="capsule-core" d="M23,-2 H27 C32,-2 30,2 27,2 H23 C18,2 20,-2 23,-2 Z"/>
+      </g>
+  
+      <use id="capsule-0" class="capsule" href="#capsule"/>
+      <use id="capsule-1" class="capsule" href="#capsule" transform="translate(3,50) scale(1,-1)" />
+      <use id="capsule-0-v" class="capsule-vertical" href="#capsule" transform="rotate(90) translate(0,3)" />
+      <use id="capsule-1-v" class="capsule-vertical" href="#capsule" transform="translate(2.5,50) scale(1,-1) rotate(90)" />
+    </defs>
+  
+  
+    <g id="vertical-light-bars">
+      <rect class="vertical" x="-25" y="0" width="50" height="400" />
+      <rect class="vertical" x="75" y="0" width="50" height="400" />
+      <rect class="vertical" x="175" y="0" width="50" height="400" />
+      <rect class="vertical" x="275" y="0" width="50" height="400" />
+      <rect class="vertical" x="375" y="0" width="50" height="400" />
+      <rect class="vertical" x="475" y="0" width="50" height="400" />
+      <rect class="vertical" x="575" y="0" width="50" height="400" />
+      <rect class="vertical" x="675" y="0" width="50" height="400" />
+    </g>
+  
+    <g id="vertical-dark-bars">
+      <rect class="vertical dark" x="25" y="0" width="50" height="400" />
+      <rect class="vertical dark" x="125" y="0" width="50" height="400" />
+      <rect class="vertical dark" x="225" y="0" width="50" height="400" />
+      <rect class="vertical dark" x="325" y="0" width="50" height="400" />
+      <rect class="vertical dark" x="425" y="0" width="50" height="400" />
+      <rect class="vertical dark" x="525" y="0" width="50" height="400" />
+      <rect class="vertical dark" x="625" y="0" width="50" height="400" />
+    </g>
+  
+    <g id="horizontal-bars">
+      <rect class="horizontal" x="0" y="25" width="700" height="50" />
+      <rect class="horizontal" x="0" y="125" width="700" height="50" />
+      <rect class="horizontal" x="0" y="225" width="700" height="50" />
+      <rect class="horizontal" x="0" y="325" width="700" height="50" />
+    </g>
+  
+  
+    <g id="cornerchecks" transform="translate(0,0)">
+      <g id="cornercheck-row-0">
+        <g id="cornercheck-0">
+          <use href="#cb-0" x="25" y="25" />
+          <use href="#cb-1" x="75" y="25" />
+        
+          <use href="#cb-1" x="25" y="75" />
+          <use href="#cb-0" x="75" y="75" />
+        </g>
+  
+        <use href="#cornercheck-0" x="100" />
+        <use href="#cornercheck-0" x="200" />
+        <use href="#cornercheck-0" x="300" />
+        <use href="#cornercheck-0" x="400" />
+        <use href="#cornercheck-0" x="500" />
+        <use href="#cornercheck-0" x="600" />
+      </g>
+      <g id="cornercheck-row-1" transform="translate(0,100)">
+        <g id="cornercheck-1">
+          <use href="#cb-1" x="25" y="25" />
+          <use href="#cb-0" x="75" y="25" />
+        
+          <use href="#cb-0" x="25" y="75" />
+          <use href="#cb-1" x="75" y="75" />
+        </g>
+  
+        <use href="#cornercheck-1" x="100" />
+        <use href="#cornercheck-1" x="200" />
+        <use href="#cornercheck-1" x="300" />
+        <use href="#cornercheck-1" x="400" />
+        <use href="#cornercheck-1" x="500" />
+        <use href="#cornercheck-1" x="600" />
+      </g>
+      <use href="#cornercheck-row-0" y="200" />
+      <use href="#cornercheck-row-1" y="200" />
+    </g>
+  
+    <g id="star-capsule-rows">
+      <g id="capsule-row-1" transform="translate(0,-25)"> 
+        <use href="#capsule-0-v" x="125" />
+        <use href="#capsule-0-v" x="225" />
+        <use href="#capsule-0-v" x="325" />
+        <use href="#capsule-0-v" x="425" />
+        <use href="#capsule-0-v" x="525" />
+        <use href="#capsule-0-v" x="625" />
+      </g>
+  
+      <g id="star-row-1" transform="translate(0,25)"> 
+        <use href="#capsule-1" x="25" />
+        <use href="#star-l" x="100" />
+        <use href="#capsule-1" x="125" />
+        <use href="#star-l" x="200" />
+        <use href="#capsule-1" x="225" />
+        <use href="#star-l" x="300" />
+        <use href="#capsule-1" x="325" />
+        <use href="#star-l" x="400" />
+        <use href="#capsule-1" x="425" />
+        <use href="#star-l" x="500" />
+        <use href="#capsule-1" x="525" />
+        <use href="#star-l" x="600" />
+        <use href="#capsule-1" x="625" />
+      </g>
+  
+      <g id="capsule-row-2" transform="translate(0,75)"> 
+        <use href="#capsule-1-v" x="125" />
+        <use href="#capsule-1-v" x="225" />
+        <use href="#capsule-1-v" x="325" />
+        <use href="#capsule-1-v" x="425" />
+        <use href="#capsule-1-v" x="525" />
+        <use href="#capsule-1-v" x="625" />
+      </g>
+  
+      <g id="star-row-2" transform="translate(0,125)"> 
+        <use href="#capsule-0" x="25" />
+        <use href="#star-r" x="100" />
+        <use href="#capsule-0" x="125" />
+        <use href="#star-r" x="200" />
+        <use href="#capsule-0" x="225" />
+        <use href="#star-r" x="300" />
+        <use href="#capsule-0" x="325" />
+        <use href="#star-r" x="400" />
+        <use href="#capsule-0" x="425" />
+        <use href="#star-r" x="500" />
+        <use href="#capsule-0" x="525" />
+        <use href="#star-r" x="600" />
+        <use href="#capsule-0" x="625" />
+      </g>
+  
+      <use href="#capsule-row-1" y="200" />
+      <use href="#star-row-1" y="200" />
+      <use href="#capsule-row-2" y="200" />
+      <use href="#star-row-2" y="200" />
+      <use href="#capsule-row-1" y="400" />
+    </g>
+  </svg>
+
+  <section id="controls">
+    <label> 
+      <input type="checkbox" value="cornerchecks" checked> 
+      checkerboard corners
+    </label>
+    <label> 
+      <input type="checkbox" value="star-capsule-rows" checked> 
+      stars and capsules
+    </label>
+    <label> 
+      <input type="checkbox" value="horizontal-bars" checked> 
+      blue horizontal stripes
+    </label>
+    <label> 
+      <input type="checkbox" value="vertical-dark-bars" checked> 
+      black vertical stripes
+    </label>
+  </section>
+
+  <script>
+    document.querySelectorAll(`input[type=checkbox]`).forEach( el => {
+      el.addEventListener(`change`, event => {
+        const checkbox = event.target;
+        const feature = document.getElementById(checkbox.value);
+        feature.style.display = checkbox.checked ? "inline" : "none";
+      }, false);
+    })
+  </script>
+</body>
+</html>
